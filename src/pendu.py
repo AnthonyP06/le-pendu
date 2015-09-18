@@ -29,7 +29,7 @@ while donnees.attemptsLeft > 0 and not wordFound:
 	printedWord = printWordToGuess(donnees.wordToGuess, donnees.triedLetters)
 	
 	# Is the word completely found?
-	if str.find(printedWord, '*') == -1:
+	if '*' not in printedWord:
 		wordFound = True
 
 # Congrats!
