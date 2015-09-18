@@ -9,7 +9,9 @@ Version: 1.0
 Date: 17.09.2015
 Python: 2.7.10 64 bits """
 
-from donnes.py import *
+from donnees import *
+
+from random import randint
 
 # Get the list of words from the database
 def getWords():
@@ -19,7 +21,8 @@ def getWords():
 
 # Choose a word (randomly) from a list of words in order to play the game
 def randomWord(wordsList):
-	return 0
+	position = randint(0, len(wordsList)-1)
+	return wordsList[position]
 	
 # ----------------------
 
@@ -54,5 +57,14 @@ def tryLetter(letter):
 # ----------------------
 
 # Print the guess to guess, hiding the unfound letters and showing the guess ones.
-def printUnknownWord(triedLetters):
-	return 0
+def printWordToGuess(word, triedLetters):
+	# Strings are immutable, I'd better word with a list
+	wordPrinted = list(word)
+	
+	# Has the letter been suggested by the player? If so, display the letter. Display a star '*' otherwise.
+	for (position, letter) in enumerate(wordPrinted):
+		if letter not in triedLetters:
+			wordPrinted[position] = '*'
+	
+	# Print the word
+	print "".join(wordPrinted)
