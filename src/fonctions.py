@@ -21,7 +21,14 @@ def getWords():
 
 # Choose a word (randomly) from a list of words in order to play the game
 def randomWord(wordsList):
-	position = randint(0, len(wordsList)-1)
+	# Is the list empty?
+	try:
+		position = randint(0, len(wordsList)-1)
+	except ValueError:
+		print "The list of words is empty. Please check it and then reload the game."
+		quit()
+		
+	# The list contains at least 1 word	
 	return wordsList[position]
 	
 # ----------------------
