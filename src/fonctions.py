@@ -9,7 +9,7 @@ Version: 1.0
 Date: 17.09.2015
 Python: 2.7.10 64 bits """
 
-from donnees import *
+import donnees
 
 from random import randint
 
@@ -57,10 +57,44 @@ def saveScorePlayer(name):
 	
 # ----------------------
 
+# Enter a single letter.
+def enterLetter():
+	letter = str()
+	
+	# Enter a valid letter?
+	letterValidity = False
+	while not letterValidity:
+		# Enter a single letter (automatically converted in upper letter)
+		letter = raw_input("\n Please try a single letter : ").upper()
+		
+		# It is not a single letter
+		if len(letter) != 1:
+			print "It is not a single letter. You must enter a single letter."
+			
+		# Is the letter in the alphabet?
+		if not letter.isalpha():
+			print "This char is not in the alphabet. You must enter a letter."
+			
+		# Has the letter ever been suggested?
+		if letter in donnees.triedLetters:
+			print "You have already suggested this letter. Please try with another one."
+	
+		# The letter is valid
+		if len(letter) == 1 and letter.isalpha() and letter not in donnees.triedLetters:
+			letterValidity = True
+	
+	return letter
+	
+# ----------------------
+	
 # Try a letter. If it is one letter matching with the hidden word, this letter appears to the player.
 def tryLetter(letter):
-	return 0
+	# The letter is not a letter of the word to guess, 1 life less, nothing otherwise.
+	if letter not in donnees.wordToGuess:
+		donnees.attemptsLeft -= 1;
 	
+	# Add this letter to the list of suggested letters by the player
+	donnees.triedLetters.append(letter)
 # ----------------------
 
 # Print the guess to guess, hiding the unfound letters and showing the guess ones.
@@ -73,5 +107,10 @@ def printWordToGuess(word, triedLetters):
 		if letter not in triedLetters:
 			wordPrinted[position] = '*'
 	
+	# List to string
+	wordPrinted = "".join(wordPrinted)
+	
 	# Print the word
-	print "".join(wordPrinted)
+	print "\n ---> Word to guess : {} \n".format(wordPrinted)
+	
+	return wordPrinted

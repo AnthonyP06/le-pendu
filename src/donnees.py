@@ -7,6 +7,9 @@ Python: 2.7.10 64 bits """
 
 # List with all the words of our database
 words = list()
+words.append("VOITURE")
+words.append("AEROPORT")
+words.append("TABLE")
 
 # Word to guess during the game
 wordToGuess = str()

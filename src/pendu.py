@@ -9,7 +9,28 @@ from fonctions import *
 import donnees
 
 # Choose a word (randomly) in the list of words.
-wordToGuess = randomWord(donnees.words)
+donnees.wordToGuess = randomWord(donnees.words)
 
 # Print the word to guess (only with stars '*' because the game has not began yet)
-printWordToGuess(wordToGuess, donnees.words)
+printWordToGuess(donnees.wordToGuess, donnees.triedLetters)
+
+# Try letters whilst the player still has lives.
+wordFound = False
+while donnees.attemptsLeft > 0 and not wordFound:
+	print "You have {} attempt(s) left.".format(donnees.attemptsLeft)
+	
+	# Suggest a letter
+	letter = enterLetter()
+	
+	# Is this letter a good one?
+	tryLetter(letter)
+	
+	# Print the word to guess
+	printedWord = printWordToGuess(donnees.wordToGuess, donnees.triedLetters)
+	
+	# Is the word completely found?
+	if str.find(printedWord, '*') == -1:
+		wordFound = True
+
+# Congrats!
+print "Congratulations! You have found the word!"
