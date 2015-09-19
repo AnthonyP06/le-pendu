@@ -14,7 +14,7 @@ donnees.wordToGuess = randomWord(donnees.words)
 # Print the word to guess (only with stars '*' because the game has not began yet)
 printWordToGuess(donnees.wordToGuess, donnees.triedLetters)
 
-# Try letters whilst the player still has lives.
+# Try letters whilst the player still has lives and word not found.
 wordFound = False
 while donnees.attemptsLeft > 0 and not wordFound:
 	print "You have {} attempt(s) left.".format(donnees.attemptsLeft)
@@ -32,5 +32,8 @@ while donnees.attemptsLeft > 0 and not wordFound:
 	if '*' not in printedWord:
 		wordFound = True
 
-# Congrats!
-print "Congratulations! You have found the word!"
+# Congrats! Or Game Over...
+if wordFound:
+	print "Congratulations! You have found the word!"
+else:
+	print "Game Over... Maybe this game is too hard for you!"
