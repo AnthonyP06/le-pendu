@@ -8,8 +8,8 @@ Python: 2.7.10 64 bits """
 from fonctions import *
 import donnees
 
-# Import the list of words
-getWords()
+# Import the list of words in the selected language
+donnees.words = getWords(donnees.language)
 
 # Choose a word (randomly) in the list of words.
 donnees.wordToGuess = randomWord(donnees.words)

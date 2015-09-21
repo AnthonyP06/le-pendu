@@ -13,18 +13,22 @@ import donnees
 
 from random import randint
 
-def getWords():
-	""" Get the list of words from the database. If the file doesn't exist, the game ends and you are asked to check that your list actually exists in the repository './words'. Otherwise, create a list with either French words called 'french.txt' or English words called 'english.txt' and write down 1 word (in uppercases preferably) per line. """
+def getWords(language):
+	""" Get the list of words from the database in the selected language. If the file doesn't exist, the game ends and you are asked to check that your list actually exists in the repository './words'. Otherwise, create a list with either French words called 'french.txt' or English words called 'english.txt' and write down 1 word (in uppercases preferably) per line. """
+	
+	wordsList = list()
 	
 	# Open the list of words (in mode "Reading only")
-	listFile = open("./words/{}.txt".format(donnees.language), "r")
+	listFile = open("./words/{}.txt".format(language), "r")
 	
 	# Add every word of the list file to the game list
 	for word in listFile:
-		donnees.words.append(word)
+		wordsList.append(word)
 		
 	# Close the open file
 	listFile.close()
+	
+	return wordsList
 	
 # ----------------------
 
