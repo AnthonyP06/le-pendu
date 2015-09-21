@@ -7,9 +7,9 @@ Python: 2.7.10 64 bits """
 
 # List with all the words of our database
 words = list()
-words.append("VOITURE")
-words.append("AEROPORT")
-words.append("TABLE")
+
+# Language used for the list of words (French by default).
+language = str("french")
 
 # Word to guess during the game
 wordToGuess = str()

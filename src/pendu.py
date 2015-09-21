@@ -8,6 +8,9 @@ Python: 2.7.10 64 bits """
 from fonctions import *
 import donnees
 
+# Import the list of words
+getWords()
+
 # Choose a word (randomly) in the list of words.
 donnees.wordToGuess = randomWord(donnees.words)
 
