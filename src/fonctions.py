@@ -19,10 +19,15 @@ def getWords(language):
 	wordsList = list()
 	
 	# Open the list of words (in mode "Reading only")
-	listFile = open("./words/{}.txt".format(language), "r")
+	try:
+		listFile = open("./words/{}.txt".format(language), "r")
+	except IOError:
+		print "The file you asked doesn't exist. Please check there is a file called either 'french.txt' (for French words) or 'english.txt' (for English words) in the repository './words/'. Then reload the game."
+		quit() 
 	
-	# Add every word of the list file to the game list
+	# Add every word of the list file to the game list + delete the return char ('\n') at the end of a word.
 	for word in listFile:
+		word = word.replace('\n', '')
 		wordsList.append(word)
 		
 	# Close the open file
