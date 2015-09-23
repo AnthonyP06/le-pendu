@@ -37,6 +37,27 @@ def getWords(language):
 	
 # ----------------------
 
+def askLanguage():
+	""" Ask the player which language to use for the game. User Interface is always in English but you can select French words or English words. """
+	
+	languageValidity = False
+	
+	while not languageValidity:		
+		languageInput = raw_input("\n Which language would you like to play with? Enter 'EN' for English words or 'FR' for French words : ").upper()
+		
+		# Is the language valid? (French or English)
+		if languageInput == "EN":
+			languageInput = "english"
+			languageValidity = True
+		
+		if languageInput == "FR":
+			languageInput = "french"
+			languageValidity = True
+	
+	return languageInput
+	 
+# ----------------------
+
 def randomWord(wordsList):
 	""" # Choose a word (randomly) from a list of words in order to play the game. If the list is empty, the game ends and you are asked to check that your list actually contains at least 1 word. """
 	

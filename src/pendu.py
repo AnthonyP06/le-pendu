@@ -8,6 +8,9 @@ Python: 2.7.10 64 bits """
 from fonctions import *
 import donnees
 
+# Ask the language to the player for the list of words
+donnees.language = askLanguage()
+
 # Import the list of words in the selected language
 donnees.words = getWords(donnees.language)
 
